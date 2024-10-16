@@ -1,0 +1,364 @@
+#include <bits/stdc++.h>//**
+using namespace std;
+
+struct student {
+    string first_name;
+    string last_name;
+    int roll_number;
+    double cgpa;
+    int course_id[10];
+} students[110];
+
+int number_of_students = 0;
+
+//**********************************************
+void addStudentDetails() {
+    cout << "\n🌟 ╔═════════════════════════════════════════╗ 🌟\n";
+    cout << "   ║           Add New Student               ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    
+    int roll_no;
+    cout << "✏️  Enter Roll Number: ";
+    cin >> roll_no;
+    
+    for (int i = 0; i < number_of_students; i++) {
+        if (students[i].roll_number == roll_no) {
+            cout << "⚠️  Student with the given roll number already exists in the database.\n";
+            return;
+        }
+    }
+    
+    cout << "✏️  Enter First Name: ";
+    cin >> students[number_of_students].first_name;
+    
+    cout << "✏️  Enter Last Name: ";
+    cin >> students[number_of_students].last_name;
+    
+    students[number_of_students].roll_number = roll_no;
+    
+    cout << "✏️  Enter CGPA: ";
+    cin >> students[number_of_students].cgpa;
+    
+    cout << "✏️  Enter the Course IDs (enter 5 IDs): ";
+    for (int i = 0; i < 5; i++) {
+        cin >> students[number_of_students].course_id[i];
+    }
+    
+    number_of_students++;
+    cout << "✅ Student added successfully!\n";
+    cout << "🎉 ╚═════════════════════════════════════════╝\n";
+}
+
+//************************************************************
+
+void findStudentByRollNumber() {
+    cout << "\n🔍 ╔═════════════════════════════════════════╗ 🔍\n";
+    cout << "   ║      Find Student by Roll Number        ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    
+    int roll_no;
+    cout << "🔢 Enter Roll Number: ";
+    cin >> roll_no;
+    
+    bool found = false;
+    
+    for (int i = 0; i < number_of_students; i++) {
+        if (roll_no == students[i].roll_number) {
+            found = true;
+            
+            cout << "\n🎓 ╔═════════════════════════════════════════╗ 🎓\n";
+            cout << "   ║            Student Details              ║\n";
+            cout << "   ╚═════════════════════════════════════════╝\n";
+            cout << "   🆔 Roll Number: " << students[i].roll_number << "\n";
+            cout << "   📛 First Name : " << students[i].first_name << "\n";
+            cout << "   👨 Last Name  : " << students[i].last_name << "\n";
+            cout << "   🎓 CGPA       : " << students[i].cgpa << "\n";
+            cout << "   📚 Course IDs : ";
+            
+            for (int j = 0; j < 5; j++) {
+                cout << students[i].course_id[j] << " ";
+            }
+            cout << "\n";
+            cout << "🎓 ╚═════════════════════════════════════════╝\n";
+            break;
+        }
+    }
+    
+    if (!found)
+        cout << "⚠️  No student found with the given roll number.\n";
+}
+
+//**************************************************************
+void findStudentByFirstName() {
+    cout << "\n🔍 ╔═════════════════════════════════════════╗ 🔍\n";
+    cout << "   ║        Find Student by First Name       ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    
+    string firstName;
+    cout << "✏️  Enter First Name: ";
+    cin >> firstName;
+    
+    bool found = false;
+    
+    for (int i = 0; i < number_of_students; i++) {
+        if (firstName == students[i].first_name) {
+            found = true;
+            
+            cout << "\n🎓 ╔═════════════════════════════════════════╗ 🎓\n";
+            cout << "   ║            Student Details              ║\n";
+            cout << "   ╚═════════════════════════════════════════╝\n";
+            cout << "   🆔 Roll Number: " << students[i].roll_number << "\n";
+            cout << "   📛 First Name : " << students[i].first_name << "\n";
+            cout << "   👨 Last Name  : " << students[i].last_name << "\n";
+            cout << "   🎓 CGPA       : " << students[i].cgpa << "\n";
+            cout << "   📚 Course IDs : ";
+            
+            for (int j = 0; j < 5; j++) {
+                cout << students[i].course_id[j] << " ";
+            }
+            cout << "\n";
+            cout << "🎓 ╚═════════════════════════════════════════╝\n";
+        }
+    }
+    
+    if (!found)
+        cout << "⚠️  No student found with the given first name.\n";
+}
+
+//**************************************************************
+
+void findStudentByCourseId() {
+    cout << "\n🔍 ╔═════════════════════════════════════════╗ 🔍\n";
+    cout << "   ║       Find Student by Course ID         ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    
+    int id;
+    cout << "🔢 Enter Course ID: ";
+    cin >> id;
+    
+    bool found = false;
+    
+    for (int i = 0; i < number_of_students; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (id == students[i].course_id[j]) {
+                found = true;
+                
+                cout << "\n🎓 ╔═════════════════════════════════════════╗ 🎓\n";
+                cout << "   ║            Student Details              ║\n";
+                cout << "   ╚═════════════════════════════════════════╝\n";
+                cout << "   🆔 Roll Number: " << students[i].roll_number << "\n";
+                cout << "   📛 First Name : " << students[i].first_name << "\n";
+                cout << "   👨 Last Name  : " << students[i].last_name << "\n";
+                cout << "   🎓 CGPA       : " << students[i].cgpa << "\n";
+                cout << "----------------------------------------------\n";
+            }
+        }
+    }
+    
+    if (!found)
+        cout << "⚠️  No student found enrolled in the given course ID.\n";
+}
+
+//******************************************************************
+
+void findTotalStudents() {
+    cout << "\n🔢 ╔═════════════════════════════════════════╗ 🔢\n";
+    cout << "   ║       Total Number of Students          ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    cout << "📊 Total Students  : " << number_of_students << "\n";
+    cout << "📊 Maximum Capacity: 110 Students\n";
+    cout << "🔢 ╚═════════════════════════════════════════╝\n";
+}
+
+//************************************************************************
+
+void deleteStudentByRollNumber() {
+    cout << "\n🗑️  ╔═════════════════════════════════════════╗ 🗑️\n";
+    cout << "   ║      Delete Student by Roll Number       ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    
+    int roll_no;
+    cout << "🔢 Enter Roll Number to Delete: ";
+    cin >> roll_no;
+    
+    bool found = false;
+    for (int i = 0; i < number_of_students; i++) {
+        if (roll_no == students[i].roll_number) {
+            found = true;
+            for (int j = i; j < number_of_students - 1; j++)
+                students[j] = students[j + 1];
+            number_of_students--;
+            cout << "✅ Student with Roll Number " << roll_no << " deleted successfully!\n";
+            break;
+        }
+    }
+    
+    if (!found)
+        cout << "⚠️  Roll number not found in the database.\n";
+    cout << "🗑️  ╚═════════════════════════════════════════╝\n";
+}
+
+//******************************************************************
+void showAllStudentsDetails() {
+    cout << "\n📚 ╔═════════════════════════════════════════╗ 📚\n";
+    cout << "   ║        All Student Details              ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    
+    if (number_of_students == 0) {
+        cout << "⚠️  No students in the database.\n";
+        return;
+    }
+    
+    for (int i = 0; i < number_of_students; i++) {
+        cout << "\n🎓 ╔═════════════════════════════════════════╗ 🎓\n";
+        cout << "   ║           Student Details               ║\n";
+        cout << "   ╚═════════════════════════════════════════╝\n";
+        cout << "   🆔 Roll Number: " << students[i].roll_number << "\n";
+        cout << "   📛 First Name : " << students[i].first_name << "\n";
+        cout << "   👨 Last Name  : " << students[i].last_name << "\n";
+        cout << "   🎓 CGPA       : " << students[i].cgpa << "\n";
+        cout << "   📚 Course IDs : ";
+        
+        for (int j = 0; j < 5; j++) {
+            cout << students[i].course_id[j] << " ";
+        }
+        cout << "\n";
+        cout << "🎓 ╚═════════════════════════════════════════╝\n";
+    }
+}
+
+void updateStudentDetails() {
+    cout << "\n🔧 ╔═════════════════════════════════════════╗ 🔧\n";
+    cout << "   ║         Update Student Details          ║\n";
+    cout << "   ╚═════════════════════════════════════════╝\n";
+    
+    int roll_no;
+    cout << "🔢 Enter Roll Number to Update: ";
+    cin >> roll_no;
+    
+    bool found = false;
+    for (int i = 0; i < number_of_students; i++) {
+        if (students[i].roll_number == roll_no) {
+            found = true;
+            
+            cout << "\n📋 Select the field to update:\n";
+            cout << "  1️⃣  First Name\n";
+            cout << "  2️⃣  Last Name\n";
+            cout << "  3️⃣  Roll Number\n";
+            cout << "  4️⃣  CGPA\n";
+            cout << "  5️⃣  Courses\n";
+            cout << "   ➡️ Enter your choice: ";
+            
+            int choice;
+            cin >> choice;
+            
+            switch (choice) {
+                case 1:
+                    cout << "✏️  Enter the new First Name: ";
+                    cin >> students[i].first_name;
+                    break;
+                    
+                case 2:
+                    cout << "✏️  Enter the new Last Name: ";
+                    cin >> students[i].last_name;
+                    break;
+                    
+                case 3:
+                    cout << "✏️  Enter the new Roll Number: ";
+                    cin >> students[i].roll_number;
+                    break;
+                    
+                case 4:
+                    cout << "✏️  Enter the new CGPA: ";
+                    cin >> students[i].cgpa;
+                    break;
+                    
+                case 5:
+                    cout << "✏️  Enter the new Course IDs (5 IDs): ";
+                    for (int j = 0; j < 5; j++) {
+                        cin >> students[i].course_id[j];
+                    }
+                    break;
+                    
+                default:
+                    cout << "⚠️  Invalid choice. Please try again.\n";
+                    return;
+            }
+            
+            cout << "✅ Details updated successfully.\n";
+            cout << "🔧 ╚═════════════════════════════════════════╝\n";
+            return;
+        }
+    }
+    
+    if (!found) {
+        cout << "⚠️  Student not found in the database.\n";
+        cout << "🔧 ╚═════════════════════════════════════════╝\n";
+    }
+}
+
+int main() {
+    int choice;
+    while (true) {
+        cout << "\n🌟 ╔═════════════════════════════════════════╗ 🌟\n";
+        cout << "   ║      🎓 Student Database Management       ║\n";
+        cout << "   ║              System Menu                ║\n";
+        cout << "   ╚═════════════════════════════════════════╝\n";
+        cout << "   1️⃣  Add New Student\n";
+        cout << "   2️⃣  Search Student by Roll Number\n";
+        cout << "   3️⃣  Search Student by First Name\n";
+        cout << "   4️⃣  Search Student by Course ID\n";
+        cout << "   5️⃣  Count Total Students\n";
+        cout << "   6️⃣  Delete Student by Roll Number\n";
+        cout << "   7️⃣  Update Student Details\n";
+        cout << "   8️⃣  Show All Student Details\n"; // New option
+        cout << "   9️⃣  Exit\n";
+        cout << "----------------------------------------------\n";
+        cout << "   📥 Enter your choice: ";
+        cin >> choice;
+        
+        switch (choice) {
+            case 1:
+                addStudentDetails();
+                break;
+                
+            case 2:
+                findStudentByRollNumber();
+                break;
+                
+            case 3:
+                findStudentByFirstName();
+                break;
+                
+            case 4:
+                findStudentByCourseId();
+                break;
+                
+            case 5:
+                findTotalStudents();
+                break;
+                
+            case 6:
+                deleteStudentByRollNumber();
+                break;
+                
+            case 7:
+                updateStudentDetails();
+                break;
+                
+            case 8:
+                showAllStudentsDetails(); // Call the new function
+                break;
+                
+            case 9:
+                cout << "\n👋 Thank you for using the Student Database Management System.\n";
+                cout << "   Have a great day ahead! 🌟\n";
+                cout << "   ══════════════════════════════════════════\n";
+                return 0;
+                
+            default:
+                cout << "⚠️  Invalid choice. Please select a valid option from the menu.\n";
+        }
+    }
+    return 0;
+}
